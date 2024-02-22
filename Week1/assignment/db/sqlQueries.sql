@@ -24,10 +24,11 @@ CREATE TABLE Meeting (
     FOREIGN KEY (room_no) REFERENCES Room(room_no)
 );
 
-INSERT INTO Invitee (invitee_name, invited_by) VALUES ('John', 'Jane');
-INSERT INTO Invitee (invitee_name, invited_by) VALUES ('Jane', 'John');
-INSERT INTO Invitee (invitee_name, invited_by) VALUES ('Jack', 'Jill');
-INSERT INTO Invitee (invitee_name, invited_by) VALUES ('Jill', 'Jack');
-INSERT INTO Invitee (invitee_name, invited_by) VALUES ('Jim', 'Jill');
+INSERT INTO Invitee (invitee_name, invited_by)
+VALUES ('John', 'Jane'),
+       ('Jane', 'John'),
+       ('Jack', 'Jill'),
+       ('Jill', 'Jack'),
+       ('Jim', 'Jill');
 
 
