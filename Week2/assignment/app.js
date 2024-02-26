@@ -1,17 +1,28 @@
 import express from 'express';
 
 import { createDB, dropDB } from './db/setupDB.js';
+
 import {
   addAuthorsTable,
   addMentorToAuthorsTable,
   addDataInAuthorTable,
   addMentorsDataInAuthorsTable,
-} from './db/keys.js';
+} from './db/authors.js';
 
 import {
   addResearchPapers,
   addDataInResearchPapersTable,
-} from './db/relationships.js';
+} from './db/researchPapers.js';
+
+import {
+  authorsAndMentors,
+  authorsAndPublications,
+  authorsAndPublicationsCount,
+  researchPapersCountByFemaleAuthors,
+  avgHIndexByUniversity,
+  totalResearchPapersByUniversity,
+  minAndMaxHIndexByUniversity,
+} from './db/queries.js';
 
 const app = express();
 
@@ -32,9 +43,20 @@ const addData = async () => {
   await addDataInResearchPapersTable();
 };
 
+const queries = async () => {
+  await authorsAndMentors();
+  await authorsAndPublications();
+  await authorsAndPublicationsCount();
+  await researchPapersCountByFemaleAuthors();
+  await avgHIndexByUniversity();
+  await totalResearchPapersByUniversity();
+  await minAndMaxHIndexByUniversity();
+};
+
 setupDatabase()
   .then(() => createTables())
   .then(() => addData())
+  .then(() => queries())
   .catch((err) => console.log(err));
 
 export default app;
