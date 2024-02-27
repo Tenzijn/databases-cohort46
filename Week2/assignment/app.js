@@ -1,5 +1,3 @@
-import express from 'express';
-
 import { createDB, dropDB } from './db/setupDB.js';
 
 import {
@@ -23,8 +21,6 @@ import {
   totalResearchPapersByUniversity,
   minAndMaxHIndexByUniversity,
 } from './db/queries.js';
-
-const app = express();
 
 const setupDatabase = async () => {
   await dropDB();
@@ -58,5 +54,3 @@ setupDatabase()
   .then(() => addData())
   .then(() => queries())
   .catch((err) => console.log(err));
-
-export default app;
