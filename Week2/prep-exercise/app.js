@@ -7,13 +7,11 @@ let db = await mysql.createConnection({
   host: 'localhost',
   user: 'hyfuser',
   password: 'hyfpassword',
-  database: 'recipes_db',
 });
 
 const executeQuery = async (query) => {
   try {
-    const [rows] = await db.execute(query);
-    console.log(rows);
+    await db.query(query);
   } catch (err) {
     console.log(err);
   }
@@ -23,14 +21,14 @@ const setupDatabase = async () => {
   try {
     await executeQuery('DROP DATABASE IF EXISTS recipes_db');
     await executeQuery('CREATE DATABASE recipes_db');
-    // await executeQuery('USE recipes_db'); // I am getting an error here
-    db.end();
-    db = await mysql.createConnection({
-      host: 'localhost',
-      user: 'hyfuser',
-      password: 'hyfpassword',
-      database: 'recipes_db',
-    });
+    await executeQuery('USE recipes_db'); // I am getting an error here
+    // db.end();
+    // db = await mysql.createConnection({
+    //   host: 'localhost',
+    //   user: 'hyfuser',
+    //   password: 'hyfpassword',
+    //   database: 'recipes_db',
+    // });
   } catch (err) {
     console.log('Error while setting up database: ', err);
   }
