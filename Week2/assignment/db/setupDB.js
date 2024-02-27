@@ -14,12 +14,7 @@ export const dropDB = async () => {
 };
 export const createDB = async () => {
   const query = `CREATE DATABASE IF NOT EXISTS db_assignment;`;
+  const query2 = `USE db_assignment;`;
   await queryExecution(query);
-  db.end();
-  db = await mysql.createConnection({
-    host: 'localhost',
-    user: 'hyfuser',
-    password: 'hyfpassword',
-    database: 'db_assignment',
-  });
+  await queryExecution(query2);
 };
