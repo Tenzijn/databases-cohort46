@@ -1,7 +1,4 @@
-import express from 'express';
 import mysql from 'mysql2/promise';
-
-const app = express();
 
 let db = await mysql.createConnection({
   host: 'localhost',
@@ -155,5 +152,3 @@ const initializeDatabase = async () => {
 };
 
 initializeDatabase();
-
-export default app;
