@@ -27,12 +27,12 @@ LEFT JOIN research_papers rp
 GROUP BY author_name;
 
 	-- 2. Sum of the research papers published by all female authors.
-SELECT a.gender, COUNT(rp.paper_title) as research_papers 
+SELECT DISTINCT a.gender,COUNT( DISTINCT rp.paper_title) as research_papers 
 FROM authors a
 LEFT JOIN research_papers rp
 	ON a.author_id = rp.author_id
-GROUP BY a.gender
-HAVING a.gender = 'Female';
+GROUP BY a.gender;
+-- HAVING a.gender = 'Female';
 
 	-- 3. Average of the h-index of all authors per university.
 SELECT university, AVG(h_index) as avg_h_index
@@ -40,7 +40,7 @@ FROM authors
 GROUP BY university;
 
 	-- 4. Sum of the research papers of the authors per university.
-SELECT university, COUNT(paper_title) as research_papers
+SELECT university, COUNT(DISTINCT paper_title) as research_papers
 FROM authors a
 LEFT JOIN research_papers rp
 	ON a.author_id = rp.author_id

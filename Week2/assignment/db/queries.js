@@ -30,7 +30,7 @@ export const authorsAndPublicationsCount = async () => {
 
 export const researchPapersCountByFemaleAuthors = async () => {
   queryExecution(`
-	SELECT a.gender, COUNT(rp.paper_title) as research_papers 
+	SELECT a.gender, COUNT( DISTINCT rp.paper_title) as unique_research_papers 
 	FROM authors a
 	LEFT JOIN research_papers rp
 		ON a.author_id = rp.author_id
@@ -49,7 +49,7 @@ export const avgHIndexByUniversity = async () => {
 
 export const totalResearchPapersByUniversity = async () => {
   queryExecution(`
-	SELECT university, COUNT(paper_title) as research_papers
+	SELECT university, COUNT(DISTINCT paper_title) as research_papers
 	FROM authors a
 	LEFT JOIN research_papers rp
 		ON a.author_id = rp.author_id
