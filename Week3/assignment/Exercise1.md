@@ -59,11 +59,9 @@
      - `dinner_id`
 
    - `member_food` table
-
    - `member_id`
    - `food_code`
 
    - `dinner_food` table
-
    - `dinner_id`
    - `food_code`
