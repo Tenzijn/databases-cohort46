@@ -159,7 +159,6 @@ async function main() {
       );
     }
     const client = new MongoClient(process.env.MONGODB_URL);
-    console.log(process.env.MONGODB_URL);
     try {
       await client.connect();
 
