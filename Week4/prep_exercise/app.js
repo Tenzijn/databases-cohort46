@@ -1,7 +1,10 @@
 import { MongoClient } from 'mongodb';
 import { recipe } from './data/data.js';
+import dotenv from 'dotenv';
 
-const uri = 'mongodb+srv://tenzin:hyfpassword@cluster0.sdmmjwo.mongodb.net/';
+dotenv.config();
+
+const uri = process.env.MONGODB_URI;
 const client = new MongoClient(uri);
 
 async function main() {
