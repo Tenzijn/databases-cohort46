@@ -16,6 +16,7 @@
 1. What columns violate 1NF?
 
    - `food_code` and `food_description` violate 1NF. They are repeating groups and should be extracted to a separate table.
+   - `venue_code` and `venue_description` violate 1NF. They are repeating groups and should be extracted to a separate table.
 
 2. What entities do you recognize that could be extracted?
 
@@ -57,10 +58,6 @@
 
      - `member_id`
      - `dinner_id`
-
-   - `member_food` table
-   - `member_id`
-   - `food_code`
 
    - `dinner_food` table
    - `dinner_id`

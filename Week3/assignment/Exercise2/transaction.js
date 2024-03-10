@@ -9,11 +9,17 @@ async function transaction() {
     `UPDATE account SET balance = balance + 1000 WHERE account_number = 2;`,
     `INSERT INTO account_changes (account_number, amount, remark) VALUES (2, 1000, 'Transfer from account 1');`,
     `RELEASE SAVEPOINT start;`,
-    `COMMIT;`,
   ];
 
-  for (const query of queries) {
-    await executeQuery(query);
+  try {
+    for (const query of queries) {
+      await executeQuery(query);
+    }
+  } catch (error) {
+    console.error(error);
+    await executeQuery(`ROLLBACK TO SAVEPOINT start;`);
+  } finally {
+    await executeQuery(`COMMIT;`);
   }
 }
 
